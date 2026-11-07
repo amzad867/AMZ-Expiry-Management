@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#00aab9">
+  <title>AMZ Expiry Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="brand">
+    <div class="logo">AMZ</div>
+    <div>
+      <h2>Expiry Management</h2>
+      <p>Store Inventory Control</p>
+    </div>
+  </div>
+  <button class="refresh-btn" onclick="loadData()">↻ Refresh</button>
+</header>
+
+<main class="container">
+
+  <section class="dashboard">
+    <div class="stat-card">
+      <span>Total Items</span>
+      <strong id="total">0</strong>
+    </div>
+    <div class="stat-card safe">
+      <span>Safe</span>
+      <strong id="safe">0</strong>
+    </div>
+    <div class="stat-card warning">
+      <span>Warning</span>
+      <strong id="warning">0</strong>
+    </div>
+    <div class="stat-card urgent">
+      <span>Urgent</span>
+      <strong id="urgent">0</strong>
+    </div>
+    <div class="stat-card overdue">
+      <span>Overdue</span>
+      <strong id="overdue">0</strong>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-title">
+      <div>
+        <h3>Expiry Monitor</h3>
+        <p>Live product expiry tracking</p>
+      </div>
+      <button class="refresh-btn" onclick="loadData()">Update</button>
+    </div>
+
+    <div class="toolbar">
+      <input
+        type="search"
+        id="searchInput"
+        placeholder="Search barcode..."
+        oninput="renderTable()"
+      >
+      <select id="statusFilter" onchange="renderTable()">
+        <option value="ALL">All Status</option>
+        <option value="SAFE">Safe</option>
+        <option value="WARNING">Warning</option>
+        <option value="URGENT">Urgent</option>
+        <option value="OVERDUE">Overdue</option>
+      </select>
+    </div>
+
+    <div id="loading" class="message">Loading data...</div>
+    <div id="error" class="error-message" hidden></div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Barcode</th>
+            <th>Expiry Date</th>
+            <th>Before Remove</th>
+            <th>Remove Date</th>
+            <th>Days Left</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+
+    <div id="empty" class="message" hidden>
+      No products found.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  AMZ EXPIRY MANAGEMENT
+  <p>Automatic Expiry Monitoring System</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
